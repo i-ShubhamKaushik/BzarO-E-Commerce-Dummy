@@ -301,7 +301,7 @@ export const Checkout: React.FC = () => {
                       className={`w-full input-field py-2 text-xs ${addressErrors.recipient ? 'border-red-500' : ''}`}
                       required
                     />
-                    {addressErrors.recipient && <p className="text-[10px] text-red-650">{addressErrors.recipient}</p>}
+                    {addressErrors.recipient && <p className="text-[10px] text-red-600">{addressErrors.recipient}</p>}
                   </div>
                 </div>
 
@@ -316,7 +316,7 @@ export const Checkout: React.FC = () => {
                       className={`w-full input-field py-2 text-xs ${addressErrors.phone ? 'border-red-500' : ''}`}
                       required
                     />
-                    {addressErrors.phone && <p className="text-[10px] text-red-650">{addressErrors.phone}</p>}
+                     {addressErrors.phone && <p className="text-[10px] text-red-600">{addressErrors.phone}</p>}
                   </div>
                   
                   <div className="space-y-1">
@@ -329,7 +329,7 @@ export const Checkout: React.FC = () => {
                       className={`w-full input-field py-2 text-xs ${addressErrors.postalCode ? 'border-red-500' : ''}`}
                       required
                     />
-                    {addressErrors.postalCode && <p className="text-[10px] text-red-650">{addressErrors.postalCode}</p>}
+                     {addressErrors.postalCode && <p className="text-[10px] text-red-600">{addressErrors.postalCode}</p>}
                   </div>
                 </div>
 
@@ -343,7 +343,7 @@ export const Checkout: React.FC = () => {
                     className={`w-full input-field py-2 text-xs ${addressErrors.lines ? 'border-red-500' : ''}`}
                     required
                   />
-                  {addressErrors.lines && <p className="text-[10px] text-red-650">{addressErrors.lines}</p>}
+                   {addressErrors.lines && <p className="text-[10px] text-red-600">{addressErrors.lines}</p>}
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
@@ -357,7 +357,7 @@ export const Checkout: React.FC = () => {
                       className={`w-full input-field py-2 text-xs ${addressErrors.city ? 'border-red-500' : ''}`}
                       required
                     />
-                    {addressErrors.city && <p className="text-[10px] text-red-650">{addressErrors.city}</p>}
+                     {addressErrors.city && <p className="text-[10px] text-red-600">{addressErrors.city}</p>}
                   </div>
                   <div className="space-y-1">
                     <label className="text-[10px] uppercase font-bold text-slate-500">State</label>
@@ -369,7 +369,7 @@ export const Checkout: React.FC = () => {
                       className={`w-full input-field py-2 text-xs ${addressErrors.state ? 'border-red-500' : ''}`}
                       required
                     />
-                    {addressErrors.state && <p className="text-[10px] text-red-650">{addressErrors.state}</p>}
+                     {addressErrors.state && <p className="text-[10px] text-red-600">{addressErrors.state}</p>}
                   </div>
                 </div>
 
@@ -406,7 +406,7 @@ export const Checkout: React.FC = () => {
                     </div>
                   </div>
 
-                  <span className="text-xs font-bold text-brand-650">
+                   <span className="text-xs font-bold text-brand-600">
                     {formatINR(item.product.unitPricePaise * item.qty)}
                   </span>
                 </div>
@@ -464,7 +464,7 @@ export const Checkout: React.FC = () => {
             {/* Verification policies hint */}
             <div className="text-[10px] text-slate-400 leading-relaxed space-y-1">
               <p>By completing this simulated checkout, you agree to the mock licensing terms of the showcase.</p>
-              <p className="underline cursor-pointer hover:text-slate-650">Read Returns Policy</p>
+               <p className="underline cursor-pointer hover:text-slate-600">Read Returns Policy</p>
             </div>
           </div>
         </div>

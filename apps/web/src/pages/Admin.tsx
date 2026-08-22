@@ -813,7 +813,7 @@ export const Admin: React.FC = () => {
                           }`}>
                             {ord.status}
                           </span>
-                          <span className="font-mono font-bold text-brand-650">{formatINR(ord.totals.totalPaise)}</span>
+                          <span className="font-mono font-bold text-brand-600">{formatINR(ord.totals.totalPaise)}</span>
                         </div>
                       ))
                     )}
@@ -997,7 +997,7 @@ export const Admin: React.FC = () => {
                       <div className="min-w-0">
                         <h4 className="font-bold text-slate-900 truncate">{prod.title}</h4>
                         <p className="text-[10px] text-slate-400 font-mono">
-                          SKU: {prod.sku} • Stock: <span className={prod.stock <= 5 ? 'text-red-650 font-bold animate-pulse' : 'text-slate-500'}>{prod.stock}</span>
+                          SKU: {prod.sku} • Stock: <span className={prod.stock <= 5 ? 'text-red-600 font-bold animate-pulse' : 'text-slate-500'}>{prod.stock}</span>
                         </p>
                       </div>
                     </div>
@@ -1030,7 +1030,7 @@ export const Admin: React.FC = () => {
                             setAdjustStockVal(5);
                             setAdjustingProductId(prod.id);
                           }}
-                          className="text-xs text-brand-600 hover:text-brand-700 font-bold flex items-center gap-1 border border-slate-200 hover:border-slate-350 bg-white px-2 py-1 rounded shadow-xs"
+                          className="text-xs text-brand-600 hover:text-brand-700 font-bold flex items-center gap-1 border border-slate-200 hover:border-slate-300 bg-white px-2 py-1 rounded shadow-xs"
                         >
                           <ArrowRightLeft size={12} />
                           Adjust Stock
@@ -1051,7 +1051,7 @@ export const Admin: React.FC = () => {
                             deleteProductMutation.mutate(prod.id);
                           }
                         }}
-                        className="text-xs text-red-650 hover:text-red-750 font-bold flex items-center gap-0.5 border border-slate-200 hover:border-slate-300 bg-white px-2 py-1 rounded shadow-xs"
+                        className="text-xs text-red-600 hover:text-red-700 font-bold flex items-center gap-0.5 border border-slate-200 hover:border-slate-300 bg-white px-2 py-1 rounded shadow-xs"
                       >
                         <Archive size={12} />
                         Archive
@@ -1068,7 +1068,7 @@ export const Admin: React.FC = () => {
             <div className="flex justify-between items-end">
               <div className="space-y-1">
                 <h2 className="text-lg font-bold text-slate-900">Catalog Categories</h2>
-                <p className="text-xs text-slate-505">Add, edit, or remove catalog product categories.</p>
+                <p className="text-xs text-slate-500">Add, edit, or remove catalog product categories.</p>
               </div>
               {!showCategoryForm && (
                 <button
@@ -1097,7 +1097,7 @@ export const Admin: React.FC = () => {
                       setShowCategoryForm(false);
                       setEditingCategoryId(null);
                     }}
-                    className="text-xs text-slate-450 hover:text-slate-750"
+                    className="text-xs text-slate-400 hover:text-slate-700"
                   >
                     Cancel
                   </button>
@@ -1174,7 +1174,7 @@ export const Admin: React.FC = () => {
                     <div className="flex gap-2">
                       <button
                         onClick={() => handleEditCategoryClick(cat)}
-                        className="text-xs text-slate-650 hover:text-slate-950 font-bold flex items-center gap-0.5 border border-slate-200 hover:border-slate-300 bg-white px-2 py-1 rounded shadow-xs"
+                        className="text-xs text-slate-600 hover:text-slate-950 font-bold flex items-center gap-0.5 border border-slate-200 hover:border-slate-300 bg-white px-2 py-1 rounded shadow-xs"
                       >
                         <Edit2 size={12} />
                         Edit
@@ -1186,7 +1186,7 @@ export const Admin: React.FC = () => {
                             deleteCategoryMutation.mutate(cat.id);
                           }
                         }}
-                        className="text-xs text-red-650 hover:text-red-750 font-bold flex items-center gap-0.5 border border-slate-200 hover:border-slate-300 bg-white px-2 py-1 rounded shadow-xs"
+                        className="text-xs text-red-600 hover:text-red-700 font-bold flex items-center gap-0.5 border border-slate-200 hover:border-slate-300 bg-white px-2 py-1 rounded shadow-xs"
                       >
                         <Trash2 size={12} />
                         Delete
@@ -1204,7 +1204,7 @@ export const Admin: React.FC = () => {
           <div className="space-y-6">
             <div className="space-y-1">
               <h2 className="text-lg font-bold text-slate-900">Logistics Orders</h2>
-              <p className="text-xs text-slate-505">Process shipping status coordinates (`processing`, `shipped`, `delivered`).</p>
+              <p className="text-xs text-slate-500">Process shipping status coordinates (`processing`, `shipped`, `delivered`).</p>
             </div>
 
             {ordersLoading ? (
@@ -1221,11 +1221,11 @@ export const Admin: React.FC = () => {
                           <span className="font-mono font-bold text-slate-800 hover:underline hover:text-brand-600 cursor-pointer" onClick={() => handleOpenOrderDrawer(ord.id)}>{ord.orderNumber}</span>
                           <span className="text-[10px] text-slate-400">{new Date(ord.createdAt).toLocaleDateString()}</span>
                         </div>
-                        <p className="text-[10px] text-slate-450 font-mono mt-0.5">Total Amount: {formatINR(ord.totals.totalPaise)}</p>
+                        <p className="text-[10px] text-slate-400 font-mono mt-0.5">Total Amount: {formatINR(ord.totals.totalPaise)}</p>
                       </div>
 
                       <div className="flex items-center gap-3 w-full md:w-auto self-stretch md:self-auto justify-end">
-                        <span className="font-bold text-slate-650 uppercase shrink-0">Status: {ord.status}</span>
+                        <span className="font-bold text-slate-600 uppercase shrink-0">Status: {ord.status}</span>
                         
                         <button
                           onClick={() => handleOpenOrderDrawer(ord.id)}
@@ -1247,7 +1247,7 @@ export const Admin: React.FC = () => {
                         {ord.status === 'processing' && (
                           <button
                             onClick={() => updateOrderStatusMutation.mutate({ id: ord.id, status: 'shipped' })}
-                            className="bg-indigo-650 hover:bg-indigo-750 text-white rounded px-2.5 py-1 font-bold"
+                            className="bg-indigo-600 hover:bg-indigo-700 text-white rounded px-2.5 py-1 font-bold"
                           >
                             Ship Order
                           </button>
@@ -1256,7 +1256,7 @@ export const Admin: React.FC = () => {
                         {ord.status === 'shipped' && (
                           <button
                             onClick={() => updateOrderStatusMutation.mutate({ id: ord.id, status: 'delivered' })}
-                            className="bg-emerald-650 hover:bg-emerald-750 text-white rounded px-2.5 py-1 font-bold"
+                            className="bg-emerald-600 hover:bg-emerald-700 text-white rounded px-2.5 py-1 font-bold"
                           >
                             Mark Delivered
                           </button>
@@ -1298,7 +1298,7 @@ export const Admin: React.FC = () => {
           <div className="space-y-6">
             <div className="space-y-1">
               <h2 className="text-lg font-bold text-slate-900">Review Moderation</h2>
-              <p className="text-xs text-slate-550">Approve, hide, or reject user review submissions.</p>
+              <p className="text-xs text-slate-500">Approve, hide, or reject user review submissions.</p>
             </div>
 
             {reviewsLoading ? (
@@ -1318,14 +1318,14 @@ export const Admin: React.FC = () => {
                         rev.status === 'approved' 
                           ? 'bg-emerald-50 text-emerald-700 border-emerald-200' 
                           : rev.status === 'pending' 
-                          ? 'bg-yellow-50 text-yellow-755 border-yellow-200'
+                          ? 'bg-yellow-50 text-yellow-700 border-yellow-200'
                           : 'bg-red-50 text-red-700 border-red-200'
                       }`}>
                         {rev.status}
                       </span>
                     </div>
 
-                    <p className="text-xs text-slate-650 leading-relaxed italic">"{rev.body}"</p>
+                    <p className="text-xs text-slate-600 leading-relaxed italic">"{rev.body}"</p>
 
                     {rev.moderation && (
                       <div className="text-[10px] text-slate-500 font-mono bg-slate-50 p-2 rounded border border-slate-100">
@@ -1341,7 +1341,7 @@ export const Admin: React.FC = () => {
                             setModerationAction('rejected');
                             setModerationReason('');
                           }}
-                          className="py-1 px-2.5 text-[10px] font-bold border border-red-250 bg-white hover:bg-red-50 text-red-700 rounded-lg shadow-xs transition-colors"
+                          className="py-1 px-2.5 text-[10px] font-bold border border-red-200 bg-white hover:bg-red-50 text-red-700 rounded-lg shadow-xs transition-colors"
                         >
                           Reject
                         </button>
@@ -1370,7 +1370,7 @@ export const Admin: React.FC = () => {
             <div className="flex justify-between items-end">
               <div className="space-y-1">
                 <h2 className="text-lg font-bold text-slate-900">Promotional Coupons</h2>
-                <p className="text-xs text-slate-505">Add, disable, or modify promotional campaign codes.</p>
+                <p className="text-xs text-slate-500">Add, disable, or modify promotional campaign codes.</p>
               </div>
               {!showCouponForm && (
                 <button
@@ -1394,7 +1394,7 @@ export const Admin: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => setShowCouponForm(false)}
-                    className="text-xs text-slate-450 hover:text-slate-700"
+                    className="text-xs text-slate-400 hover:text-slate-700"
                   >
                     Cancel
                   </button>
@@ -1464,7 +1464,7 @@ export const Admin: React.FC = () => {
                     id="coupActive"
                     checked={coupActive}
                     onChange={(e) => setCoupActive(e.target.checked)}
-                    className="rounded border-slate-350 bg-white text-brand-600 focus:ring-brand-500 h-4 w-4 accent-brand-600"
+                    className="rounded border-slate-300 bg-white text-brand-600 focus:ring-brand-500 h-4 w-4 accent-brand-600"
                   />
                   <label htmlFor="coupActive" className="text-xs text-slate-700 font-semibold select-none cursor-pointer">Active (Customers can use it)</label>
                 </div>
@@ -1491,7 +1491,7 @@ export const Admin: React.FC = () => {
                     <div>
                       <div className="flex items-center gap-2">
                         <span className="font-mono font-bold text-slate-900">{coup.code}</span>
-                        <span className={`text-[9px] px-1 rounded uppercase font-extrabold ${coup.active ? 'bg-emerald-50 text-emerald-700 border border-emerald-250' : 'bg-rose-50 text-rose-700 border border-rose-250'}`}>
+                        <span className={`text-[9px] px-1 rounded uppercase font-extrabold ${coup.active ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-rose-50 text-rose-700 border border-rose-200'}`}>
                           {coup.active ? 'Active' : 'Disabled'}
                         </span>
                       </div>
@@ -1507,7 +1507,7 @@ export const Admin: React.FC = () => {
                             saveCouponMutation.mutate({ id: coup.id, data: { active: !coup.active } });
                           }
                         }}
-                        className={`font-bold text-xs ${coup.active ? 'text-rose-600 hover:text-red-750' : 'text-brand-600 hover:text-brand-755'}`}
+                        className={`font-bold text-xs ${coup.active ? 'text-rose-600 hover:text-red-700' : 'text-brand-600 hover:text-brand-700'}`}
                       >
                         {coup.active ? 'Disable' : 'Enable'}
                       </button>
@@ -1525,7 +1525,7 @@ export const Admin: React.FC = () => {
                             deleteCouponMutation.mutate(coup.id);
                           }
                         }}
-                        className="text-red-605 hover:text-red-750 font-bold text-xs"
+                        className="text-red-600 hover:text-red-700 font-bold text-xs"
                       >
                         Delete
                       </button>
@@ -1545,7 +1545,7 @@ export const Admin: React.FC = () => {
                 <Users className="text-brand-600" />
                 User Access Control
               </h2>
-              <p className="text-xs text-slate-505">View user directories, block access immediately, and configure access roles.</p>
+              <p className="text-xs text-slate-500">View user directories, block access immediately, and configure access roles.</p>
             </div>
 
             {/* Filter Deck */}
@@ -1588,7 +1588,7 @@ export const Admin: React.FC = () => {
                     <div key={usr.id} className="p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 text-xs">
                       <div>
                         <h4 className="font-bold text-slate-900">{usr.name}</h4>
-                        <p className="text-[10px] text-slate-450 font-mono">{usr.email}</p>
+                        <p className="text-[10px] text-slate-400 font-mono">{usr.email}</p>
                       </div>
 
                       <div className="flex items-center gap-3">
@@ -1599,7 +1599,7 @@ export const Admin: React.FC = () => {
                         </span>
 
                         <span className={`text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded border ${
-                          (usr.status || 'active') === 'active' ? 'bg-emerald-50 text-emerald-700 border-emerald-250' : 'bg-red-50 text-red-700 border-red-250 font-bold animate-pulse'
+                          (usr.status || 'active') === 'active' ? 'bg-emerald-50 text-emerald-700 border-emerald-200' : 'bg-red-50 text-red-700 border-red-200 font-bold animate-pulse'
                         }`}>
                           {usr.status || 'active'}
                         </span>
@@ -1650,7 +1650,7 @@ export const Admin: React.FC = () => {
                 <ClipboardList className="text-brand-600" />
                 Administrative Activity Logs
               </h2>
-              <p className="text-xs text-slate-505">Chronological audits tracking changes inside catalogs, roles, configurations, and orders.</p>
+              <p className="text-xs text-slate-500">Chronological audits tracking changes inside catalogs, roles, configurations, and orders.</p>
             </div>
 
             {/* Filter Deck */}
@@ -1749,7 +1749,7 @@ export const Admin: React.FC = () => {
             <div className="flex justify-between items-start border-b border-slate-100 pb-4">
               <div>
                 <h3 className="text-lg font-bold text-slate-900">{viewingUser.user.name}</h3>
-                <p className="text-xs text-slate-450 font-mono mt-0.5">{viewingUser.user.email}</p>
+                <p className="text-xs text-slate-400 font-mono mt-0.5">{viewingUser.user.email}</p>
               </div>
               <button onClick={() => setViewingUser(null)} className="text-slate-400 hover:text-slate-700 p-1 hover:bg-slate-100 rounded-lg">
                 <X size={20} />
@@ -1758,12 +1758,12 @@ export const Admin: React.FC = () => {
 
             <div className="grid grid-cols-2 gap-4">
               <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-1 shadow-sm">
-                <span className="text-[9px] uppercase font-bold text-slate-450">Order Count</span>
+                <span className="text-[9px] uppercase font-bold text-slate-400">Order Count</span>
                 <p className="text-xl font-bold text-slate-900 font-mono">{viewingUser.orderCount}</p>
               </div>
               <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-1 shadow-sm">
-                <span className="text-[9px] uppercase font-bold text-slate-450">Total Spent</span>
-                <p className="text-xl font-bold text-brand-650 font-mono">{formatINR(viewingUser.totalSpentPaise)}</p>
+                <span className="text-[9px] uppercase font-bold text-slate-400">Total Spent</span>
+                <p className="text-xl font-bold text-brand-600 font-mono">{formatINR(viewingUser.totalSpentPaise)}</p>
               </div>
             </div>
 
@@ -1778,7 +1778,7 @@ export const Admin: React.FC = () => {
                   }}
                   className={`flex-1 py-2 rounded-lg text-xs font-semibold border flex items-center justify-center gap-1.5 transition-colors ${
                     viewingUser.user.role === 'admin' 
-                      ? 'border-indigo-250 bg-indigo-50 text-indigo-700 hover:bg-indigo-100 shadow-xs' 
+                      ? 'border-indigo-200 bg-indigo-50 text-indigo-700 hover:bg-indigo-100 shadow-xs' 
                       : 'border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100 hover:text-slate-950 shadow-xs'
                   }`}
                 >
@@ -1796,7 +1796,7 @@ export const Admin: React.FC = () => {
                   className={`flex-1 py-2 rounded-lg text-xs font-semibold border flex items-center justify-center gap-1.5 transition-colors ${
                     (viewingUser.user.status || 'active') === 'active'
                       ? 'border-red-200 bg-red-50 text-red-700 hover:bg-red-100'
-                      : 'border-emerald-250 bg-emerald-50 text-emerald-700 hover:bg-emerald-100'
+                      : 'border-emerald-200 bg-emerald-50 text-emerald-700 hover:bg-emerald-100'
                   }`}
                 >
                   <Ban size={14} />
@@ -1817,7 +1817,7 @@ export const Admin: React.FC = () => {
                         <p className="font-mono font-semibold text-slate-800">{ord.orderNumber}</p>
                         <p className="text-[10px] text-slate-400 mt-0.5">{new Date(ord.createdAt).toLocaleDateString()}</p>
                       </div>
-                      <span className="font-mono font-bold text-brand-650">{formatINR(ord.totals.totalPaise)}</span>
+                      <span className="font-mono font-bold text-brand-600">{formatINR(ord.totals.totalPaise)}</span>
                     </div>
                   ))
                 )}
@@ -1834,7 +1834,7 @@ export const Admin: React.FC = () => {
             <div className="flex justify-between items-start border-b border-slate-100 pb-4">
               <div>
                 <h3 className="text-lg font-bold text-slate-900 font-mono">{viewingOrder.orderNumber}</h3>
-                <p className="text-xs text-slate-450 mt-0.5">Purchased on {new Date(viewingOrder.createdAt).toLocaleString()}</p>
+                <p className="text-xs text-slate-400 mt-0.5">Purchased on {new Date(viewingOrder.createdAt).toLocaleString()}</p>
               </div>
               <button onClick={() => setViewingOrder(null)} className="text-slate-400 hover:text-slate-700 p-1 hover:bg-slate-100 rounded-lg">
                 <X size={20} />
@@ -1844,14 +1844,14 @@ export const Admin: React.FC = () => {
             {/* Customer Details */}
             {viewingOrder.customer && (
               <div className="bg-slate-50 p-4 rounded-xl border border-slate-200/80 space-y-2 text-xs shadow-sm">
-                <h4 className="text-[10px] uppercase font-bold text-slate-450">Customer Identity</h4>
+                <h4 className="text-[10px] uppercase font-bold text-slate-400">Customer Identity</h4>
                 <div className="grid grid-cols-2 gap-2 text-slate-800">
                   <div>
-                    <p className="text-slate-450 font-sans font-semibold">Name</p>
+                    <p className="text-slate-400 font-sans font-semibold">Name</p>
                     <p className="font-bold">{viewingOrder.customer.name}</p>
                   </div>
                   <div>
-                    <p className="text-slate-450 font-sans font-semibold">Email</p>
+                    <p className="text-slate-400 font-sans font-semibold">Email</p>
                     <p className="font-mono font-bold truncate">{viewingOrder.customer.email}</p>
                   </div>
                 </div>
@@ -1860,7 +1860,7 @@ export const Admin: React.FC = () => {
 
             {/* Delivery address */}
             <div className="bg-slate-50 p-4 rounded-xl border border-slate-200/80 space-y-2 text-xs shadow-sm">
-              <h4 className="text-[10px] uppercase font-bold text-slate-450">Delivery Address</h4>
+              <h4 className="text-[10px] uppercase font-bold text-slate-400">Delivery Address</h4>
               <p className="font-bold text-slate-800">{viewingOrder.address.recipient} ({viewingOrder.address.phone})</p>
               <p className="text-slate-500 font-normal leading-relaxed">{viewingOrder.address.lines.join(', ')}</p>
               <p className="text-slate-500 font-normal leading-relaxed">{viewingOrder.address.city}, {viewingOrder.address.state} - {viewingOrder.address.postalCode}</p>
@@ -1893,7 +1893,7 @@ export const Admin: React.FC = () => {
                     <p className="text-[10px] text-slate-400 font-mono">
                       {new Date(ev.timestamp).toLocaleString()} • Actor: {ev.actor}
                     </p>
-                    {ev.note && <p className="text-xs text-slate-550 italic font-normal">"{ev.note}"</p>}
+                    {ev.note && <p className="text-xs text-slate-500 italic font-normal">"{ev.note}"</p>}
                   </div>
                 ))}
               </div>
@@ -1915,7 +1915,7 @@ export const Admin: React.FC = () => {
               </div>
               <div className="flex justify-between text-slate-900 font-bold text-sm pt-2 border-t border-dashed border-slate-200">
                 <span>Grand Total</span>
-                <span className="text-brand-650 text-base font-extrabold">{formatINR(viewingOrder.totals.totalPaise)}</span>
+                <span className="text-brand-600 text-base font-extrabold">{formatINR(viewingOrder.totals.totalPaise)}</span>
               </div>
             </div>
           </div>
@@ -1929,7 +1929,7 @@ export const Admin: React.FC = () => {
             <div className="flex justify-between items-start border-b border-slate-100 pb-4 shrink-0">
               <div>
                 <h3 className="text-sm font-bold text-slate-900 font-mono uppercase">{viewingAuditLog.action}</h3>
-                <p className="text-[10px] text-slate-450 font-mono mt-0.5">Logged {new Date(viewingAuditLog.createdAt).toLocaleString()}</p>
+                <p className="text-[10px] text-slate-400 font-mono mt-0.5">Logged {new Date(viewingAuditLog.createdAt).toLocaleString()}</p>
               </div>
               <button onClick={() => setViewingAuditLog(null)} className="text-slate-400 hover:text-slate-700 p-1 hover:bg-slate-100 rounded-lg">
                 <X size={20} />
@@ -1950,7 +1950,7 @@ export const Admin: React.FC = () => {
 
               {viewingAuditLog.before && (
                 <div className="space-y-1">
-                  <span className="text-[10px] text-slate-450 uppercase font-bold font-sans">State Before Update</span>
+                  <span className="text-[10px] text-slate-400 uppercase font-bold font-sans">State Before Update</span>
                   <pre className="bg-red-50 p-3 rounded-lg border border-red-200 text-[10px] text-red-700 overflow-x-auto whitespace-pre-wrap">
                     {JSON.stringify(viewingAuditLog.before, null, 2)}
                   </pre>
@@ -1959,7 +1959,7 @@ export const Admin: React.FC = () => {
 
               {viewingAuditLog.after && (
                 <div className="space-y-1">
-                  <span className="text-[10px] text-slate-450 uppercase font-bold font-sans">State After Update</span>
+                  <span className="text-[10px] text-slate-400 uppercase font-bold font-sans">State After Update</span>
                   <pre className="bg-brand-50 p-3 rounded-lg border border-brand-200 text-[10px] text-brand-700 overflow-x-auto whitespace-pre-wrap">
                     {JSON.stringify(viewingAuditLog.after, null, 2)}
                   </pre>
@@ -1973,7 +1973,7 @@ export const Admin: React.FC = () => {
       {/* D. Review Moderation Action Modal */}
       {moderatingReview && (
         <div className="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-xs flex items-center justify-center p-4 animate-in fade-in duration-200">
-          <div className="w-full max-w-md bg-white border border-slate-205 rounded-xl p-6 animate-in scale-in duration-200 space-y-4 shadow-2xl">
+          <div className="w-full max-w-md bg-white border border-slate-200 rounded-xl p-6 animate-in scale-in duration-200 space-y-4 shadow-2xl">
             <h3 className="text-sm font-bold text-slate-900">
               {moderationAction === 'approved' ? 'Approve Review Submission' : 'Reject Review Submission'}
             </h3>
@@ -1981,7 +1981,7 @@ export const Admin: React.FC = () => {
             <p className="text-xs text-slate-500 italic">"{moderatingReview.body}"</p>
 
             <div className="space-y-1.5">
-              <label className="text-[10px] uppercase font-bold text-slate-550">Moderation Decision Reason</label>
+              <label className="text-[10px] uppercase font-bold text-slate-500">Moderation Decision Reason</label>
               <input
                 type="text"
                 placeholder={moderationAction === 'approved' ? 'Optional reason...' : 'Specify reasons for rejection (required)'}
@@ -1991,7 +1991,7 @@ export const Admin: React.FC = () => {
                 required={moderationAction === 'rejected'}
               />
               {moderationAction === 'rejected' && moderationReason.length < 5 && (
-                <span className="text-[10px] text-red-650">Rejection reasons must be at least 5 characters.</span>
+                <span className="text-[10px] text-red-600">Rejection reasons must be at least 5 characters.</span>
               )}
             </div>
 

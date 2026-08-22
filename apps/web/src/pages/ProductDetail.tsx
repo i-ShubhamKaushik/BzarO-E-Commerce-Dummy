@@ -342,7 +342,7 @@ export const ProductDetail: React.FC = () => {
                 </>
               ) : (
                 <>
-                  <div className="w-1.5 h-1.5 rounded-full bg-red-650" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-red-600" />
                   <span className="text-red-600 font-semibold">Temporarily out of stock</span>
                 </>
               )}

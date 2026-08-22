@@ -483,7 +483,7 @@ export const Profile: React.FC = () => {
                       <div>
                         <span className="text-[9px] uppercase font-bold text-slate-400 tracking-wider font-mono">{prod.brand}</span>
                         <h4 className="text-xs font-semibold text-slate-900 truncate mt-0.5">{prod.title}</h4>
-                        <span className="text-xs font-bold text-brand-650 mt-2 block">{formatINR(prod.pricePaise)}</span>
+                        <span className="text-xs font-bold text-brand-600 mt-2 block">{formatINR(prod.pricePaise)}</span>
                       </div>
 
                       <button
@@ -789,7 +789,7 @@ export const Profile: React.FC = () => {
 
               {/* Pricing summary */}
               <div className="space-y-2 border-t border-slate-100 pt-4 text-xs">
-                <div className="flex justify-between text-slate-650">
+                <div className="flex justify-between text-slate-600">
                   <span>Subtotal</span>
                   <span className="text-slate-900 font-semibold">{formatINR(selectedOrder.totals.subtotalPaise)}</span>
                 </div>
@@ -799,7 +799,7 @@ export const Profile: React.FC = () => {
                     <span>-{formatINR(selectedOrder.totals.discountPaise)}</span>
                   </div>
                 )}
-                <div className="flex justify-between text-slate-650">
+                <div className="flex justify-between text-slate-600">
                   <span>Shipping</span>
                   <span className="text-slate-900 font-semibold">{selectedOrder.totals.shippingPaise === 0 ? 'FREE' : formatINR(selectedOrder.totals.shippingPaise)}</span>
                 </div>

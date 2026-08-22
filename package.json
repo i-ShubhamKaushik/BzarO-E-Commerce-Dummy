@@ -13,6 +13,7 @@
     "dev:web": "npm run dev --workspace=apps/web",
     "dev": "npx concurrently \"npm run dev:api\" \"npm run dev:web\"",
     "build": "npm run build --workspaces",
+    "start": "npm run start --workspace=apps/api",
     "install:all": "npm install",
     "clean": "npm run clean --workspaces --if-present"
   },

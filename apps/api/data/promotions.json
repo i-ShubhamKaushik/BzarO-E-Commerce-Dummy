@@ -1,0 +1,57 @@
+[
+  {
+    "id": "promo_hero",
+    "title": "Redefine Visual Precision: The AuraBook Pro 14 with M3",
+    "placement": "hero",
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&q=80&w=1200",
+    "destination": "/products/aurabook-pro-14",
+    "startsAt": "2026-08-22T05:53:43.899Z",
+    "endsAt": "2026-09-21T05:53:43.899Z",
+    "active": true,
+    "sortOrder": 1
+  },
+  {
+    "id": "promo_laptops",
+    "title": "Power Meets Play: Next-Gen Gaming Laptops",
+    "placement": "hero",
+    "image": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?auto=format&fit=crop&q=80&w=1200",
+    "destination": "/products?category=cat_laptops",
+    "startsAt": "2026-08-22T05:53:43.899Z",
+    "endsAt": "2026-09-21T05:53:43.899Z",
+    "active": true,
+    "sortOrder": 2
+  },
+  {
+    "id": "promo_phones",
+    "title": "Flagship Power, Everyday Value: iPhones & Androids",
+    "placement": "hero",
+    "image": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&q=80&w=1200",
+    "destination": "/products?category=cat_phones",
+    "startsAt": "2026-08-22T05:53:43.899Z",
+    "endsAt": "2026-09-21T05:53:43.899Z",
+    "active": true,
+    "sortOrder": 3
+  },
+  {
+    "id": "promo_music",
+    "title": "Unleash Your Resonance: Acoustic Guitars",
+    "placement": "hero",
+    "image": "https://images.unsplash.com/photo-1510915361894-db8b60106cb1?auto=format&fit=crop&q=80&w=1200",
+    "destination": "/products?category=cat_music",
+    "startsAt": "2026-08-22T05:53:43.899Z",
+    "endsAt": "2026-09-21T05:53:43.899Z",
+    "active": true,
+    "sortOrder": 4
+  },
+  {
+    "id": "promo_deal1",
+    "title": "Flicker-Free Design: Lumina Desk Lamp Flat 25% Off",
+    "placement": "deal_strip",
+    "image": "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&q=80&w=600",
+    "destination": "/products/lumina-minimalist-desk-lamp",
+    "startsAt": "2026-08-22T05:53:43.899Z",
+    "endsAt": "2026-09-06T05:53:43.899Z",
+    "active": true,
+    "sortOrder": 5
+  }
+]

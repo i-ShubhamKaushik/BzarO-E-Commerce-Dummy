@@ -1,0 +1,30 @@
+[
+  {
+    "email": "admin@ecom.com",
+    "name": "Shubham",
+    "phone": "9876543210",
+    "role": "admin",
+    "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200",
+    "emailVerifiedAt": "2026-08-21T10:47:28.778Z",
+    "preferences": {
+      "marketingEmails": true
+    },
+    "passwordHash": "$argon2id$v=19$m=65536,t=3,p=4$KnzP4/QCYXUIuCZ/c1s0nA$RjCiWu80ZBU/3qHc+KQaG+D2jikefIhxaiyRhfv2gkY",
+    "createdAt": "2026-08-21T10:47:28.778Z",
+    "updatedAt": "2026-08-22T04:20:25.000Z"
+  },
+  {
+    "email": "customer@ecom.com",
+    "name": "Rahul Varma",
+    "phone": "9876543211",
+    "role": "customer",
+    "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200",
+    "emailVerifiedAt": "2026-08-21T10:47:28.778Z",
+    "preferences": {
+      "marketingEmails": false
+    },
+    "passwordHash": "$argon2id$v=19$m=65536,t=3,p=4$F3SCSbc83X1v7/4wx8im7g$olCplMko5hdzyJst6HGwdzHtT2W4ATnmOB/0YdU9N84",
+    "createdAt": "2026-08-21T10:47:28.778Z",
+    "updatedAt": "2026-08-21T10:47:28.778Z"
+  }
+]

@@ -1,0 +1,25 @@
+{
+  "name": "ecom-dummy-monorepo",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Dummy E-commerce platform monorepo",
+  "workspaces": [
+    "apps/api",
+    "apps/web",
+    "packages/contracts"
+  ],
+  "scripts": {
+    "dev:api": "npm run dev --workspace=apps/api",
+    "dev:web": "npm run dev --workspace=apps/web",
+    "dev": "npx concurrently \"npm run dev:api\" \"npm run dev:web\"",
+    "build": "npm run build --workspaces",
+    "install:all": "npm install",
+    "clean": "npm run clean --workspaces --if-present"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "mongodb": "^7.5.0"
+  }
+}

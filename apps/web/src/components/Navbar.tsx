@@ -36,9 +36,27 @@ export const Navbar: React.FC = () => {
     queryKey: ['categories'],
     queryFn: async () => {
       const res = await api.get('/categories');
-      return res.data.data.categories;
+      return res.data?.data?.categories || [];
     }
   });
+
+  // Filter out unwanted categories (Style/Lifestyle, Oral Care, Home Essentials, Kids)
+  const filteredCategories = React.useMemo(() => {
+    if (!categoriesData || !Array.isArray(categoriesData)) return [];
+    return categoriesData.filter((cat: any) => {
+      if (!cat) return false;
+      const name = (cat.name || '').toLowerCase();
+      const id = (cat.id || '').toLowerCase();
+      const slug = (cat.slug || '').toLowerCase();
+      
+      const isStyle = name === 'style' || slug === 'style' || id.includes('style') || name.includes('lifestyle');
+      const isOralCare = name.includes('oral care') || slug.includes('oral-care') || id.includes('oral_care');
+      const isHomeEssentials = name.includes('home essentials') || slug.includes('home-essentials') || id.includes('home_essentials');
+      const isKids = name.includes('kids') || slug.includes('kids') || id.includes('kids');
+      
+      return !(isStyle || isOralCare || isHomeEssentials || isKids);
+    });
+  }, [categoriesData]);
 
   const cartItemsCount = cart.items.reduce((sum: number, item: any) => sum + item.qty, 0);
 
@@ -94,7 +112,7 @@ export const Navbar: React.FC = () => {
             <Link to="/products" className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors">
               All Products
             </Link>
-            {categoriesData?.slice(0, 3).map((cat: any) => (
+            {filteredCategories?.slice(0, 3).map((cat: any) => (
               <Link
                 key={cat.id}
                 to={`/products?category=${cat.id}`}
@@ -269,7 +287,7 @@ export const Navbar: React.FC = () => {
             >
               All Products
             </Link>
-            {categoriesData?.map((cat: any) => (
+            {filteredCategories?.map((cat: any) => (
               <Link
                 key={cat.id}
                 to={`/products?category=${cat.id}`}

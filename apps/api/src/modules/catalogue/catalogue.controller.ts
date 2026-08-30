@@ -76,6 +76,13 @@ export const CatalogueController = {
 
       const result = await ProductRepository.getAll(filters);
 
+      const brandFilters = {
+        category: filters.category,
+        search: undefined,
+        status: 'published' as const
+      };
+      const matchingBrands = await ProductRepository.getBrands(brandFilters);
+
       res.status(200).json({
         data: result.products,
         meta: {
@@ -83,6 +90,7 @@ export const CatalogueController = {
           limit: filters.limit,
           total: result.total,
           totalPages: result.pages,
+          brands: matchingBrands,
           requestId: req.requestId
         }
       });
@@ -139,6 +147,13 @@ export const CatalogueController = {
 
       const result = await ProductRepository.getAll(filters);
 
+      const brandFilters = {
+        category: filters.category,
+        search: filters.search,
+        status: 'published' as const
+      };
+      const matchingBrands = await ProductRepository.getBrands(brandFilters);
+
       res.status(200).json({
         data: result.products,
         meta: {
@@ -146,6 +161,7 @@ export const CatalogueController = {
           limit: filters.limit,
           total: result.total,
           totalPages: result.pages,
+          brands: matchingBrands,
           requestId: req.requestId
         }
       });

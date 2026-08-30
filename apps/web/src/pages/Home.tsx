@@ -3,13 +3,45 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { api } from '../lib/api';
 import { formatINR } from '../components/CartDrawer';
-import { ArrowRight, Sparkles, Shield, Gift, Volume2, Loader2, Star, ChevronLeft, ChevronRight } from 'lucide-react';
+import { 
+  ArrowRight, Sparkles, Shield, Gift, Volume2, Loader2, Star, ChevronLeft, ChevronRight,
+  Laptop, Headphones, Smartphone, Watch, Gem, 
+  Music, Utensils, Dumbbell, Car, Briefcase, Shirt, Bed, PenTool, Smile, 
+  Heart, ClipboardList, ShoppingBag, Tag 
+} from 'lucide-react';
 
 const HERO_DESCRIPTIONS: Record<string, string> = {
   'promo_hero': 'Experience next-generation silicon engineering, customized Liquid OLED displays, and spatial acoustic arrays designed to flow audio around you.',
   'promo_laptops': 'Discover top-tier performance with Lenovo LOQ, ASUS TUF, and HP Victus. Loaded with Nvidia RTX graphics, optimized for peak gameplay and productivity.',
   'promo_phones': 'Upgrade to flagship performance. Get the latest iPhone 15 or premium Android smartphones with high-resolution cameras and fast charging.',
   'promo_music': 'Start your musical journey today. Shop professional dreadnought acoustic guitars from Yamaha and Kadence starting under 10,000 INR.'
+};
+
+const getCategoryIcon = (slug: string) => {
+  const mapping: Record<string, React.ComponentType<any>> = {
+    'electronics': Laptop,
+    'audio': Headphones,
+    'smartphones': Smartphone,
+    'wearables': Watch,
+    'home-living': Bed,
+    'laptops': Laptop,
+    'lifestyle-accessories': Gem,
+    'cosmetics': Sparkles,
+    'musical-instruments': Music,
+    'kitchen-dining': Utensils,
+    'sports-fitness': Dumbbell,
+    'automotive': Car,
+    'travel-luggage': Briefcase,
+    'fashion-wardrobe': Shirt,
+    'home-decor': Bed,
+    'oral-care': Smile,
+    'home-essentials': ClipboardList,
+    'grocery-daily-needs': ShoppingBag,
+    'furniture-bedding': Bed,
+    'kids-baby': Heart,
+    'stationery-office': PenTool,
+  };
+  return mapping[slug] || Tag;
 };
 
 export const Home: React.FC = () => {
@@ -37,23 +69,95 @@ export const Home: React.FC = () => {
     }
   });
 
-  // Fetch trending products (top 4 published products)
+  // Fetch trending products (top 100 published products to filter down to 40)
   const { data: trendingProducts, isLoading: productsLoading } = useQuery({
     queryKey: ['products-trending'],
     queryFn: async () => {
-      const res = await api.get('/products', { params: { limit: 4 } });
-      return res.data.data;
+      const res = await api.get('/products', { params: { limit: 100 } });
+      return res.data?.data || [];
     }
   });
+
+  // Filter out products belonging to removed categories, remove duplicates, and slice to 40 items
+  const filteredProducts = React.useMemo(() => {
+    if (!trendingProducts || !Array.isArray(trendingProducts)) return [];
+    
+    const seen = new Set<string>();
+    
+    return trendingProducts
+      .filter((prod: any) => {
+        if (!prod || !prod.id) return false;
+        if (seen.has(prod.id)) return false;
+        seen.add(prod.id);
+        
+        // Filter out products belonging to the removed categories
+        const catId = prod.categoryId?.toLowerCase() || '';
+        const isStyle = catId.includes('style') || catId.includes('lifestyle');
+        const isOralCare = catId.includes('oral_care');
+        const isHomeEssentials = catId.includes('home_essentials');
+        const isKids = catId.includes('kids');
+        
+        if (isStyle || isOralCare || isHomeEssentials || isKids) {
+          return false;
+        }
+        return true;
+      })
+      .slice(0, 40);
+  }, [trendingProducts]);
 
   // Fetch categories
   const { data: categories, isLoading: categoriesLoading } = useQuery({
     queryKey: ['categories-home'],
     queryFn: async () => {
       const res = await api.get('/categories');
-      return res.data.data.categories;
+      return res.data?.data?.categories || [];
     }
   });
+
+  // Filter categories according to requirements (no duplicates, valid image URLs, no repeated images, remove unwanted categories)
+  const filteredCategories = React.useMemo(() => {
+    if (!categories || !Array.isArray(categories)) return [];
+    const seenIds = new Set<string>();
+    const seenImages = new Set<string>();
+    
+    return categories.filter((cat: any) => {
+      if (!cat) return false;
+      
+      // 1. Remove duplicate categories by ID
+      const catId = (cat.id || '').toString();
+      if (seenIds.has(catId)) return false;
+      seenIds.add(catId);
+      
+      // Preserve top-level categories only
+      if (cat.parentId) return false;
+      
+      // 2. Remove categories without a valid image URL
+      if (!cat.image || typeof cat.image !== 'string' || cat.image.trim() === '') return false;
+      
+      const isValidUrl = cat.image.startsWith('http://') || cat.image.startsWith('https://');
+      if (!isValidUrl) return false;
+      
+      // 3. Remove categories using duplicate/repeated images
+      if (seenImages.has(cat.image)) return false;
+      seenImages.add(cat.image);
+
+      // 4. Remove unwanted categories (Style/Lifestyle, Oral Care, Home Essentials, Kids)
+      const name = (cat.name || '').toLowerCase();
+      const id = (cat.id || '').toLowerCase();
+      const slug = (cat.slug || '').toLowerCase();
+      
+      const isStyle = name === 'style' || slug === 'style' || id.includes('style') || name.includes('lifestyle');
+      const isOralCare = name.includes('oral care') || slug.includes('oral-care') || id.includes('oral_care');
+      const isHomeEssentials = name.includes('home essentials') || slug.includes('home-essentials') || id.includes('home_essentials');
+      const isKids = name.includes('kids') || slug.includes('kids') || id.includes('kids');
+      
+      if (isStyle || isOralCare || isHomeEssentials || isKids) {
+        return false;
+      }
+      
+      return true;
+    });
+  }, [categories]);
 
   // Hero Carousel State
   const [currentSlide, setCurrentSlide] = React.useState(0);
@@ -183,7 +287,7 @@ export const Home: React.FC = () => {
         )}
       </div>
 
-      {/* 2. Category Grid */}
+      {/* 2. Category Icon Navigation */}
       <div className="space-y-6">
         <div className="flex items-end justify-between">
           <div className="space-y-1">
@@ -197,30 +301,44 @@ export const Home: React.FC = () => {
         </div>
 
         {categoriesLoading ? (
-          <div className="h-48 flex items-center justify-center">
-            <Loader2 className="animate-spin text-brand-600" size={32} />
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {categories?.filter((c: any) => !c.parentId).map((cat: any) => (
+          <div className="flex gap-4 sm:gap-6 overflow-x-auto pb-3 pt-1 animate-pulse">
+            {[1, 2, 3, 4, 5, 6].map((idx) => (
               <div 
-                key={cat.id}
-                onClick={() => navigate(`/products?category=${cat.id}`)}
-                className="group relative h-64 rounded-xl overflow-hidden border border-slate-200/80 cursor-pointer shadow hover:shadow-md hover:border-slate-300 transition-all duration-300"
+                key={idx} 
+                className="flex flex-col items-center space-y-2 min-w-[80px] sm:min-w-[96px] shrink-0"
               >
-                <img 
-                  src={cat.image || 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&q=80&w=400'} 
-                  alt={cat.name} 
-                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-102 transition-transform duration-500 brightness-[0.8] group-hover:brightness-[0.75]"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-slate-950/10 to-transparent" />
-                
-                <div className="absolute bottom-0 left-0 p-6 space-y-1 z-15">
-                  <h3 className="text-lg font-bold text-white tracking-wide">{cat.name}</h3>
-                  <p className="text-xs text-slate-200 line-clamp-1">{cat.description}</p>
-                </div>
+                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-slate-200" />
+                <div className="h-3 w-12 sm:w-16 bg-slate-200 rounded" />
               </div>
             ))}
+          </div>
+        ) : (
+          <div className="w-full overflow-hidden">
+            <div 
+              className="flex gap-4 sm:gap-6 md:gap-8 overflow-x-auto pb-3 pt-1 justify-start md:justify-center md:flex-wrap lg:flex-nowrap"
+              role="list"
+              aria-label="Category navigation"
+            >
+              {filteredCategories.map((cat: any) => {
+                const IconComponent = getCategoryIcon(cat.slug);
+                return (
+                  <button
+                    key={cat.id}
+                    onClick={() => navigate(`/products?category=${cat.id}`)}
+                    className="flex flex-col items-center space-y-2 min-w-[80px] sm:min-w-[96px] shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 rounded-xl p-2 transition-all duration-200 hover:bg-slate-100/80 active:bg-slate-200/60 group"
+                    role="listitem"
+                    aria-label={cat.name}
+                  >
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-slate-100 group-hover:bg-white border border-slate-200 flex items-center justify-center text-slate-600 group-hover:text-brand-600 transition-colors shadow-xs group-hover:shadow-sm">
+                      <IconComponent size={22} className="stroke-[1.5]" />
+                    </div>
+                    <span className="text-xs sm:text-sm font-medium text-slate-700 group-hover:text-slate-900 transition-colors text-center truncate w-full max-w-[84px] sm:max-w-[100px]">
+                      {cat.name}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
         )}
       </div>
@@ -264,7 +382,7 @@ export const Home: React.FC = () => {
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {trendingProducts?.map((prod: any) => (
+            {filteredProducts?.map((prod: any) => (
               <div 
                 key={prod.id}
                 onClick={() => navigate(`/products/${prod.slug}`)}

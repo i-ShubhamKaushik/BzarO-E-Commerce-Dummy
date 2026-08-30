@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter, Routes, Route, Navigate, Outlet } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, Outlet, useLocation } from 'react-router-dom';
 import { Provider, useDispatch, useSelector } from 'react-redux';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { store } from './app/store';
@@ -92,9 +92,20 @@ const StaticPolicyPage: React.FC<{ title: string; content: string }> = ({ title,
   );
 };
 
+const ScrollToTop: React.FC = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
+
 // App Inner component to run session bootstrap
 const AppInner: React.FC = () => {
   const dispatch = useDispatch();
+  const { isAuthenticated, isInitialized } = useSelector((state: RootState) => state.auth);
 
   useEffect(() => {
     // Session bootstrap check
@@ -122,8 +133,24 @@ const AppInner: React.FC = () => {
     };
   }, [dispatch]);
 
+  // Gate the login modal popup on load if unauthenticated
+  useEffect(() => {
+    if (isInitialized && !isAuthenticated) {
+      dispatch(toggleAuthModal({ open: true, tab: 'login' }));
+    }
+  }, [isInitialized, isAuthenticated, dispatch]);
+
+  if (!isInitialized) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-slate-50 text-brand-600">
+        <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-brand-600" />
+      </div>
+    );
+  }
+
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<MainLayout />}>
           {/* Public Routes */}

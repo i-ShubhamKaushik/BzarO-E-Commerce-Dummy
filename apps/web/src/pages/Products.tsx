@@ -35,12 +35,27 @@ export const Products: React.FC = () => {
     queryKey: ['categories-list'],
     queryFn: async () => {
       const res = await api.get('/categories');
-      return res.data.data.categories;
+      return res.data?.data?.categories || [];
     }
   });
 
-  // Unique list of brands for checklist (we can extract this from catalog or hardcode realistic brands)
-  const availableBrands = ['Aura', 'SoundWave', 'Infinity', 'Lumina'];
+  // Filter out unwanted categories (Style/Lifestyle, Oral Care, Home Essentials, Kids)
+  const filteredCategories = React.useMemo(() => {
+    if (!categories || !Array.isArray(categories)) return [];
+    return categories.filter((cat: any) => {
+      if (!cat) return false;
+      const name = (cat.name || '').toLowerCase();
+      const id = (cat.id || '').toLowerCase();
+      const slug = (cat.slug || '').toLowerCase();
+      
+      const isStyle = name === 'style' || slug === 'style' || id.includes('style') || name.includes('lifestyle');
+      const isOralCare = name.includes('oral care') || slug.includes('oral-care') || id.includes('oral_care');
+      const isHomeEssentials = name.includes('home essentials') || slug.includes('home-essentials') || id.includes('home_essentials');
+      const isKids = name.includes('kids') || slug.includes('kids') || id.includes('kids');
+      
+      return !(isStyle || isOralCare || isHomeEssentials || isKids);
+    });
+  }, [categories]);
 
   // Fetch products matching parameters
   const { data: result, isLoading, error } = useQuery({
@@ -77,6 +92,10 @@ export const Products: React.FC = () => {
       };
     }
   });
+
+  // Unique list of brands for checklist (extracted dynamically from backend)
+  const availableBrands = result?.meta?.brands || [];
+
 
   // Sync inputs when URL changes
   useEffect(() => {
@@ -190,7 +209,7 @@ export const Products: React.FC = () => {
             >
               All Categories
             </button>
-            {categories?.map((cat: any) => (
+            {filteredCategories?.map((cat: any) => (
               <button
                 key={cat.id}
                 onClick={() => updateUrlParam('category', cat.id)}

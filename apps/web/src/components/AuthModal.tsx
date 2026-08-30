@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import type { RootState } from '../app/store';
 import { toggleAuthModal, setAuthModalTab } from '../features/ui/uiSlice';
@@ -9,6 +9,7 @@ import { X, Mail, Lock, User, Phone, CheckCircle, AlertTriangle } from 'lucide-r
 export const AuthModal: React.FC = () => {
   const dispatch = useDispatch();
   const { authModalOpen, authModalTab } = useSelector((state: RootState) => state.ui);
+  const { isAuthenticated } = useSelector((state: RootState) => state.auth);
   
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -19,6 +20,16 @@ export const AuthModal: React.FC = () => {
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [successMsg, setSuccessMsg] = useState<string | null>(null);
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+
+  // Auto-close modal when user becomes authenticated (e.g. after login)
+  useEffect(() => {
+    if (isAuthenticated && authModalOpen && !successMsg) {
+      dispatch(toggleAuthModal({ open: false }));
+      setErrorMsg(null);
+      setSuccessMsg(null);
+      setFieldErrors({});
+    }
+  }, [isAuthenticated, authModalOpen, successMsg, dispatch]);
 
   if (!authModalOpen) return null;
 
@@ -72,7 +83,7 @@ export const AuthModal: React.FC = () => {
       {/* Semi-transparent Backdrop */}
       <div 
         className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm"
-        onClick={handleClose}
+        onClick={isAuthenticated ? handleClose : undefined}
       />
       
       {/* Modal Container */}
@@ -83,12 +94,14 @@ export const AuthModal: React.FC = () => {
           <h3 className="text-xl font-bold tracking-tight text-slate-900">
             {authModalTab === 'login' ? 'Welcome back' : 'Create an account'}
           </h3>
-          <button 
-            onClick={handleClose}
-            className="text-slate-400 hover:text-slate-700 transition-colors p-1 hover:bg-slate-100 rounded-lg"
-          >
-            <X size={18} />
-          </button>
+          {isAuthenticated && (
+            <button 
+              onClick={handleClose}
+              className="text-slate-400 hover:text-slate-700 transition-colors p-1 hover:bg-slate-100 rounded-lg"
+            >
+              <X size={18} />
+            </button>
+          )}
         </div>
 
         {/* Tab Selector */}

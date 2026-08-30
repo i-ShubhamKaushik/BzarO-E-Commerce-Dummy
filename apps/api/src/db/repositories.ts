@@ -369,6 +369,33 @@ export const ProductRepository = {
     }
   },
 
+  async getBrands(filters: { category?: string; search?: string; status?: string }): Promise<string[]> {
+    if (isMongooseMode) {
+      const query: any = {};
+      if (filters.status) query.status = filters.status;
+      if (filters.category) query.categoryId = filters.category;
+      if (filters.search) {
+        query.$text = { $search: filters.search };
+      }
+      const brands = await MongooseProduct.distinct('brand', query);
+      return brands.sort();
+    } else {
+      let list = jsonProducts.getAll();
+      if (filters.status) list = list.filter(p => p.status === filters.status);
+      if (filters.category) list = list.filter(p => p.categoryId === filters.category);
+      if (filters.search) {
+        const q = filters.search.toLowerCase();
+        list = list.filter(p =>
+          p.title.toLowerCase().includes(q) ||
+          p.brand.toLowerCase().includes(q) ||
+          p.tags.some((t: string) => t.toLowerCase().includes(q))
+        );
+      }
+      const brands = Array.from(new Set(list.map(p => p.brand)));
+      return brands.sort();
+    }
+  },
+
   async findBySlug(slug: string): Promise<Product | null> {
     if (isMongooseMode) {
       return toObj(await MongooseProduct.findOne({ slug }));

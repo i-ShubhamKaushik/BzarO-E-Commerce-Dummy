@@ -161,7 +161,7 @@ export const SEED_CATEGORIES: Category[] = [
     name: 'Automotive',
     slug: 'automotive',
     description: 'Car phone holders, seat covers, chargers, and cleaning kits.',
-    image: 'https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&q=80&w=600',
+    image: 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&q=80&w=600',
     active: true,
     sortOrder: 12,
     createdAt: new Date().toISOString(),
@@ -249,9 +249,20 @@ export const SEED_CATEGORIES: Category[] = [
     name: 'Kids & Baby Care',
     slug: 'kids-baby',
     description: 'Soft baby clothes, diapers, educational toys, and safety accessories.',
-    image: 'https://images.unsplash.com/photo-1515488042361-404e9250afef?auto=format&fit=crop&q=80&w=600',
+    image: 'https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&q=80&w=600',
     active: true,
     sortOrder: 20,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  },
+  {
+    id: 'cat_stationery',
+    name: 'Stationery & Office',
+    slug: 'stationery-office',
+    description: 'Premium notebooks, gel pens, sketch markers, and wooden pencils.',
+    image: 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&q=80&w=600',
+    active: true,
+    sortOrder: 21,
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   }
@@ -2024,11 +2035,215 @@ const TEMPLATES: ProductTemplate[] = [
     },
     description: 'Contoured hand-fit wireless mouse with silent clicks. Reduces wrist strain and improves tracking accuracy.',
     tags: ['mouse', 'wireless-mouse', 'accessories']
+  },
+  {
+    categoryId: 'cat_stationery',
+    name: 'All-Purpose Journal Notebook',
+    brands: ['Classmate', 'Doms', 'Camlin', 'Moleskine'],
+    priceRange: [99, 499],
+    images: ['https://images.unsplash.com/photo-1531346878377-a5be20888e57?auto=format&fit=crop&q=80&w=600'],
+    specs: {
+      'Pages': ['160 Pages ruled', '200 Pages unruled', '120 Pages dotted'],
+      'Size': ['A5 Size', 'A4 Size'],
+      'Paper Quality': ['80 GSM premium paper', '100 GSM acid-free paper']
+    },
+    description: 'Elegant hardcover journal notebook designed for smooth writing, sketch notes, or daily logging. High quality bleed-resistant pages.',
+    tags: ['notebook', 'journal', 'stationery', 'office']
+  },
+  {
+    categoryId: 'cat_stationery',
+    name: 'Gel Pens Assorted Pack',
+    brands: ['Doms', 'Cello', 'Reynolds', 'Pentel'],
+    priceRange: [49, 299],
+    images: ['https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&q=80&w=600'],
+    specs: {
+      'Quantity': ['Pack of 5 colors', 'Pack of 10 colors'],
+      'Tip Size': ['0.5mm fine tip', '0.7mm medium tip'],
+      'Ink Type': ['Waterproof fade-proof gel ink', 'Quick-dry smudge-free gel ink']
+    },
+    description: 'Smooth flowing gel pens set with comfortable rubberized grip. Perfect for office writing, study notes, or journaling.',
+    tags: ['pens', 'gel-pens', 'writing', 'stationery']
+  },
+  {
+    categoryId: 'cat_stationery',
+    name: 'Premium Sketch Markers',
+    brands: ['Doms', 'Apsara', 'Copic', 'Faber-Castell'],
+    priceRange: [199, 1499],
+    images: ['https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&q=80&w=600'],
+    specs: {
+      'Tips': ['Dual tip: brush and fine tip', 'Single broad chisel tip'],
+      'Colors count': ['12 shades pack', '24 shades premium set', '36 master shades set'],
+      'Ink': ['Alcohol-based blendable ink', 'Water-based odorless ink']
+    },
+    description: 'Professional-grade coloring sketch markers for artists, architects, and designers. Dual tips allow fine detailing and broad strokes.',
+    tags: ['markers', 'sketch-pens', 'drawing', 'art', 'stationery']
+  },
+  {
+    categoryId: 'cat_stationery',
+    name: 'Wooden Pencils & Eraser Box',
+    brands: ['Natraj', 'Apsara', 'Doms', 'Faber-Castell'],
+    priceRange: [30, 120],
+    images: ['https://images.unsplash.com/photo-1569003339405-ea396a5a8a90?auto=format&fit=crop&q=80&w=600'],
+    specs: {
+      'Lead Grade': ['2B super dark lead', 'HB standard lead'],
+      'Quantity': ['Box of 10 pencils', 'Box of 20 pencils'],
+      'Includes': ['Sharpener and dust-free eraser included', 'Pencil box only']
+    },
+    description: 'Classic break-resistant lead pencils made from cultivated wood. Delivers crisp, dark handwriting with ease.',
+    tags: ['pencils', 'drawing', 'school-supplies', 'stationery']
   }
 ];
 
 const generateDynamicProducts = (): Product[] => {
   const productsList: Product[] = [];
+
+  const categoryImagesMap: Record<string, string[]> = {
+    cat_sports_fitness: [
+      'photo-1592432678016-e910b452f9a2',
+      'photo-1638536532686-d610adfc8e5c',
+      'photo-1517838277536-f5f99be501cd',
+      'photo-1571019613454-1cb2f99b2d8b',
+      'photo-1518622358385-8ea7d0794bf6',
+      'photo-1584735935682-2f2b69dff9d2',
+      'photo-1574680096145-d05b474e2155',
+      'photo-1541534741688-6078c6bfb5c5',
+    ],
+    cat_automotive: [
+      'photo-1492144534655-ae79c964c9d7',
+      'photo-1525609004556-c46c7d6cf0a3',
+      'photo-1503376780353-7e6692767b70',
+      'photo-1549399542-7e3f8b79c341',
+      'photo-1507136566006-cfc505b114fc',
+      'photo-1617788138017-80ad40651399',
+      'photo-1511919884226-fd3cad34687c',
+    ],
+    cat_travel: [
+      'photo-1488646953014-85cb44e25828',
+      'photo-1527631746610-bca00a040d60',
+      'photo-1501555088652-021faa106b9b',
+      'photo-1530789253388-582c481c54b0',
+      'photo-1568849676085-51415703900f',
+      'photo-1523906834658-6e24ef2386f9',
+    ],
+    cat_fashion: [
+      'photo-1483985988355-763728e1935b',
+      'photo-1549298916-b41d501d3772',
+      'photo-1584917865442-de89df76afd3',
+      'photo-1539109136881-3be0616acf4b',
+      'photo-1490481651871-ab68de25d43d',
+      'photo-1445205170230-053b830c6038',
+      'photo-1485230895905-ec40ba36b9bc',
+    ],
+    cat_home_decor: [
+      'photo-1513519245088-0e12902e5a38',
+      'photo-1618220179428-22790b461013',
+      'photo-1563861826100-9cb868fdbe1c',
+      'photo-1545241047-6083a3684587',
+      'photo-1603006905003-be475563bc59',
+      'photo-1507473885765-e6ed057f782c',
+      'photo-1513694203232-719a280e022f',
+    ],
+    cat_kitchen: [
+      'photo-1544982503-9f984c14501a',
+      'photo-1621972750749-0fbb1abb7736',
+      'photo-1574269909862-7e1d70bb8078',
+      'photo-1594213112595-61e72e0d3785',
+      'photo-1584269600464-37b1b58a9fe7',
+      'photo-1610701596007-11502861dcfa',
+      'photo-1556910103-1c02745aae4d',
+    ],
+    cat_oral_care: [
+      'photo-1606811971618-4486d14f3f99',
+      'photo-1542608393-546024ef1e04',
+      'photo-1559591937-e6b368ab7af4',
+      'photo-1570554886111-e80fcca6a029',
+    ],
+    cat_home_essentials: [
+      'photo-1581578731548-c64695cc6952',
+      'photo-1563453392212-326f5e854473',
+      'photo-1610484826967-09c5720778c7',
+      'photo-1528740561666-ac2479e0002b',
+    ],
+    cat_grocery: [
+      'photo-1542838132-92c53300491e',
+      'photo-1578916171728-46686eac8d58',
+      'photo-1608686207856-001b95cf60ca',
+      'photo-1586201375761-83865001e31c',
+      'photo-1596040033229-a9821ebd058d',
+      'photo-1509440159596-0249088772ff',
+    ],
+    cat_furniture_bedding: [
+      'photo-1505691938895-1758d7feb511',
+      'photo-1586023492125-27b2c045efd7',
+      'photo-1524758631624-e2822e304c36',
+      'photo-1540518614846-7eded433c457',
+      'photo-1538688525198-9b88f6f53126',
+    ],
+    cat_kids_baby: [
+      'photo-1502086223501-7ea6ecd79368',
+      'photo-1515488042361-404e9250afef',
+      'photo-1596464716127-f2a82984de30',
+      'photo-1519689680058-324335c77ebe',
+      'photo-1484981138541-3d074aa97716',
+    ],
+    cat_stationery: [
+      'photo-1531346878377-a5be20888e57',
+      'photo-1583485088034-697b5bc54ccd',
+      'photo-1513364776144-60967b0f800f',
+      'photo-1569003339405-ea396a5a8a90',
+      'photo-1456513080510-7bf3a84b82f8',
+      'photo-1586075010923-2dd4570fb338',
+      'photo-1517842645767-c639042777db',
+      'photo-1519751138087-5bf79df62d5b',
+    ],
+    cat_electronics: [
+      'photo-1498049794561-7780e7231661',
+      'photo-1550745165-9bc0b252726f',
+      'photo-1518770660439-4636190af475',
+    ],
+    cat_laptops: [
+      'photo-1496181130207-f63318859996',
+      'photo-1531297484001-80022131f5a1',
+      'photo-1611186871348-b1ce696e52c9',
+      'photo-1603302576837-37561b2e2302',
+      'photo-1588872657578-7efd1f1555ed',
+      'photo-1541807084-5c52b6b3adef',
+    ],
+    cat_phones: [
+      'photo-1511707171634-5f897ff02aa9',
+      'photo-1598327105666-5b89351aff97',
+      'photo-1510557880182-3d4d3cba35a5',
+      'photo-1565849906461-0e25f5d4707b',
+      'photo-1580910051074-3eb694886505',
+    ],
+    cat_audio: [
+      'photo-1505740420928-5e560c06d30e',
+      'photo-1546435770-a3e426bf472b',
+      'photo-1484755560693-a4074577af3a',
+      'photo-1524282745852-a463fa495977',
+    ],
+    cat_wearables: [
+      'photo-1508685096489-7aacd43bd3b1',
+      'photo-1579586337278-3befd40fd17a',
+      'photo-1517502884422-41eaaced0168',
+    ],
+    cat_lifestyle: [
+      'photo-1523275335684-37898b6baf30',
+      'photo-1511556532299-8f662fc26c06',
+    ],
+    cat_music: [
+      'photo-1510915361894-db8b60106cb1',
+      'photo-1511192336575-5a79af67a629',
+      'photo-1487180142328-054b783fc471',
+      'photo-1520523839897-bd0b52f945a0',
+    ],
+    cat_cosmetics: [
+      'photo-1522335789203-aabd1fc54bc9',
+      'photo-1596462502278-27bfdc403348',
+      'photo-1601049541289-9b1b7bbbfe19',
+    ]
+  };
+
   const editions = [
     "Edition Alpha", "Model Pro", "Series X", "Classic", "Premium", 
     "Elite", "Ultra", "Lite", "Edition II", "Standard", 
@@ -2074,6 +2289,11 @@ const generateDynamicProducts = (): Product[] => {
 
       const tags = [...temp.tags, brand.toLowerCase(), temp.categoryId.substring(4)];
 
+      // Get category dynamic image
+      const categoryImages = categoryImagesMap[temp.categoryId] || [];
+      const imageId = categoryImages.length > 0 ? categoryImages[(i - 1) % categoryImages.length] : null;
+      const productImageUrl = imageId ? `https://images.unsplash.com/${imageId}?auto=format&fit=crop&q=80&w=600` : temp.images[0];
+
       const prod: Product = {
         id,
         title,
@@ -2086,7 +2306,7 @@ const generateDynamicProducts = (): Product[] => {
         images: [
           {
             publicId: `${id}_main`,
-            url: temp.images[0],
+            url: productImageUrl,
             alt: title,
             sortOrder: 1
           }

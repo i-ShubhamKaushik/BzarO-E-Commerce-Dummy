@@ -7,8 +7,8 @@
     "image": "https://images.unsplash.com/photo-1498049794561-7780e7231661?auto=format&fit=crop&q=80&w=600",
     "active": true,
     "sortOrder": 1,
-    "createdAt": "2026-08-22T12:06:00.463Z",
-    "updatedAt": "2026-08-22T12:06:00.463Z"
+    "createdAt": "2026-08-23T03:06:32.392Z",
+    "updatedAt": "2026-08-23T03:06:32.392Z"
   },
   {
     "id": "cat_audio",
@@ -19,8 +19,8 @@
     "parentId": "cat_electronics",
     "active": true,
     "sortOrder": 2,
-    "createdAt": "2026-08-22T12:06:00.463Z",
-    "updatedAt": "2026-08-22T12:06:00.463Z"
+    "createdAt": "2026-08-23T03:06:32.392Z",
+    "updatedAt": "2026-08-23T03:06:32.392Z"
   },
   {
     "id": "cat_phones",
@@ -31,8 +31,8 @@
     "parentId": "cat_electronics",
     "active": true,
     "sortOrder": 3,
-    "createdAt": "2026-08-22T12:06:00.463Z",
-    "updatedAt": "2026-08-22T12:06:00.463Z"
+    "createdAt": "2026-08-23T03:06:32.392Z",
+    "updatedAt": "2026-08-23T03:06:32.392Z"
   },
   {
     "id": "cat_wearables",
@@ -43,8 +43,8 @@
     "parentId": "cat_electronics",
     "active": true,
     "sortOrder": 4,
-    "createdAt": "2026-08-22T12:06:00.463Z",
-    "updatedAt": "2026-08-22T12:06:00.463Z"
+    "createdAt": "2026-08-23T03:06:32.392Z",
+    "updatedAt": "2026-08-23T03:06:32.392Z"
   },
   {
     "id": "cat_home",
@@ -54,8 +54,8 @@
     "image": "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=600",
     "active": true,
     "sortOrder": 5,
-    "createdAt": "2026-08-22T12:06:00.463Z",
-    "updatedAt": "2026-08-22T12:06:00.463Z"
+    "createdAt": "2026-08-23T03:06:32.392Z",
+    "updatedAt": "2026-08-23T03:06:32.392Z"
   },
   {
     "id": "cat_laptops",
@@ -66,8 +66,8 @@
     "parentId": "cat_electronics",
     "active": true,
     "sortOrder": 6,
-    "createdAt": "2026-08-22T12:06:00.463Z",
-    "updatedAt": "2026-08-22T12:06:00.463Z"
+    "createdAt": "2026-08-23T03:06:32.392Z",
+    "updatedAt": "2026-08-23T03:06:32.392Z"
   },
   {
     "id": "cat_lifestyle",
@@ -77,8 +77,8 @@
     "image": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&q=80&w=600",
     "active": true,
     "sortOrder": 7,
-    "createdAt": "2026-08-22T12:06:00.463Z",
-    "updatedAt": "2026-08-22T12:06:00.463Z"
+    "createdAt": "2026-08-23T03:06:32.392Z",
+    "updatedAt": "2026-08-23T03:06:32.392Z"
   },
   {
     "id": "cat_cosmetics",
@@ -89,8 +89,8 @@
     "parentId": "cat_lifestyle",
     "active": true,
     "sortOrder": 8,
-    "createdAt": "2026-08-22T12:06:00.463Z",
-    "updatedAt": "2026-08-22T12:06:00.463Z"
+    "createdAt": "2026-08-23T03:06:32.392Z",
+    "updatedAt": "2026-08-23T03:06:32.392Z"
   },
   {
     "id": "cat_music",
@@ -101,8 +101,8 @@
     "parentId": "cat_lifestyle",
     "active": true,
     "sortOrder": 9,
-    "createdAt": "2026-08-22T12:06:00.463Z",
-    "updatedAt": "2026-08-22T12:06:00.463Z"
+    "createdAt": "2026-08-23T03:06:32.392Z",
+    "updatedAt": "2026-08-23T03:06:32.392Z"
   },
   {
     "id": "cat_kitchen",
@@ -113,8 +113,8 @@
     "parentId": "cat_lifestyle",
     "active": true,
     "sortOrder": 10,
-    "createdAt": "2026-08-22T12:06:00.463Z",
-    "updatedAt": "2026-08-22T12:06:00.463Z"
+    "createdAt": "2026-08-23T03:06:32.392Z",
+    "updatedAt": "2026-08-23T03:06:32.392Z"
   },
   {
     "id": "cat_sports_fitness",
@@ -124,19 +124,19 @@
     "image": "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&q=80&w=600",
     "active": true,
     "sortOrder": 11,
-    "createdAt": "2026-08-22T12:06:00.463Z",
-    "updatedAt": "2026-08-22T12:06:00.463Z"
+    "createdAt": "2026-08-23T03:06:32.392Z",
+    "updatedAt": "2026-08-23T03:06:32.392Z"
   },
   {
     "id": "cat_automotive",
     "name": "Automotive",
     "slug": "automotive",
     "description": "Car phone holders, seat covers, chargers, and cleaning kits.",
-    "image": "https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&q=80&w=600",
+    "image": "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&q=80&w=600",
     "active": true,
     "sortOrder": 12,
-    "createdAt": "2026-08-22T12:06:00.463Z",
-    "updatedAt": "2026-08-22T12:06:00.463Z"
+    "createdAt": "2026-08-23T03:06:32.392Z",
+    "updatedAt": "2026-08-23T03:06:32.392Z"
   },
   {
     "id": "cat_travel",
@@ -146,8 +146,8 @@
     "image": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&q=80&w=600",
     "active": true,
     "sortOrder": 13,
-    "createdAt": "2026-08-22T12:06:00.463Z",
-    "updatedAt": "2026-08-22T12:06:00.463Z"
+    "createdAt": "2026-08-23T03:06:32.392Z",
+    "updatedAt": "2026-08-23T03:06:32.392Z"
   },
   {
     "id": "cat_fashion",
@@ -157,8 +157,8 @@
     "image": "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&q=80&w=600",
     "active": true,
     "sortOrder": 14,
-    "createdAt": "2026-08-22T12:06:00.463Z",
-    "updatedAt": "2026-08-22T12:06:00.463Z"
+    "createdAt": "2026-08-23T03:06:32.392Z",
+    "updatedAt": "2026-08-23T03:06:32.392Z"
   },
   {
     "id": "cat_home_decor",
@@ -168,8 +168,8 @@
     "image": "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&q=80&w=600",
     "active": true,
     "sortOrder": 15,
-    "createdAt": "2026-08-22T12:06:00.463Z",
-    "updatedAt": "2026-08-22T12:06:00.463Z"
+    "createdAt": "2026-08-23T03:06:32.392Z",
+    "updatedAt": "2026-08-23T03:06:32.392Z"
   },
   {
     "id": "cat_oral_care",
@@ -179,8 +179,8 @@
     "image": "https://images.unsplash.com/photo-1606811971618-4486d14f3f99?auto=format&fit=crop&q=80&w=600",
     "active": true,
     "sortOrder": 16,
-    "createdAt": "2026-08-22T12:06:00.463Z",
-    "updatedAt": "2026-08-22T12:06:00.463Z"
+    "createdAt": "2026-08-23T03:06:32.392Z",
+    "updatedAt": "2026-08-23T03:06:32.392Z"
   },
   {
     "id": "cat_home_essentials",
@@ -190,8 +190,8 @@
     "image": "https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&q=80&w=600",
     "active": true,
     "sortOrder": 17,
-    "createdAt": "2026-08-22T12:06:00.463Z",
-    "updatedAt": "2026-08-22T12:06:00.463Z"
+    "createdAt": "2026-08-23T03:06:32.392Z",
+    "updatedAt": "2026-08-23T03:06:32.392Z"
   },
   {
     "id": "cat_grocery",
@@ -201,8 +201,8 @@
     "image": "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=600",
     "active": true,
     "sortOrder": 18,
-    "createdAt": "2026-08-22T12:06:00.463Z",
-    "updatedAt": "2026-08-22T12:06:00.463Z"
+    "createdAt": "2026-08-23T03:06:32.392Z",
+    "updatedAt": "2026-08-23T03:06:32.392Z"
   },
   {
     "id": "cat_furniture_bedding",
@@ -212,18 +212,29 @@
     "image": "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=600",
     "active": true,
     "sortOrder": 19,
-    "createdAt": "2026-08-22T12:06:00.463Z",
-    "updatedAt": "2026-08-22T12:06:00.463Z"
+    "createdAt": "2026-08-23T03:06:32.392Z",
+    "updatedAt": "2026-08-23T03:06:32.392Z"
   },
   {
     "id": "cat_kids_baby",
     "name": "Kids & Baby Care",
     "slug": "kids-baby",
     "description": "Soft baby clothes, diapers, educational toys, and safety accessories.",
-    "image": "https://images.unsplash.com/photo-1515488042361-404e9250afef?auto=format&fit=crop&q=80&w=600",
+    "image": "https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&q=80&w=600",
     "active": true,
     "sortOrder": 20,
-    "createdAt": "2026-08-22T12:06:00.463Z",
-    "updatedAt": "2026-08-22T12:06:00.463Z"
+    "createdAt": "2026-08-23T03:06:32.392Z",
+    "updatedAt": "2026-08-23T03:06:32.392Z"
+  },
+  {
+    "id": "cat_stationery",
+    "name": "Stationery & Office",
+    "slug": "stationery-office",
+    "description": "Premium notebooks, gel pens, sketch markers, and wooden pencils.",
+    "image": "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&q=80&w=600",
+    "active": true,
+    "sortOrder": 21,
+    "createdAt": "2026-08-23T03:06:32.392Z",
+    "updatedAt": "2026-08-23T03:06:32.392Z"
   }
 ]
